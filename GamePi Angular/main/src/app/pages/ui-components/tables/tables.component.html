@@ -1,0 +1,145 @@
+<div class="game-container">
+  <!-- Start Screen -->
+  <div *ngIf="!secondBackgroundVisible && !newsScreenVisible && !restartScreenVisible" class="start-screen">
+    <button
+      mat-raised-button
+      color="primary"
+      class="start-button"
+      (click)="startGame()"
+    >
+      Start Game
+    </button>
+
+   
+
+  </div>
+
+
+<!-- Restart Screen -->
+<div *ngIf="restartScreenVisible" class="restart-screen">
+  <div class="restart-content">
+    <p class="proceed-paragraph">
+      <br><br>
+      Congratulations on reaching the end of this challenge! The choices you made were crucial, but if you find yourself in situations like this again, here's a look at some of the best strategies you can follow to achieve better outcomes.
+      <br><br>
+      Value Investing: Focuses on finding undervalued companies with strong fundamentals (low P/E ratios, high book value), aiming to buy stocks at a discount and hold them until the market sees their true worth.
+      <br><br>
+      Growth Investing: Targets companies expected to grow at an above-average rate compared to others, positioning investors to benefit from their future success.
+      <br><br>
+      Momentum Investing: Capitalizes on market trends by buying rising assets and selling declining ones. Utilizes technical indicators like moving averages and RSI to time entries and exits.
+      <br><br>
+      Buy the Dip: Involves purchasing assets during temporary market declines, expecting them to recover and grow over time. Focus on strong fundamentals and avoid underlying issues.
+      <br><br>
+      Short Selling: Involves borrowing shares to sell at a high price and repurchasing them later at a lower price, profiting from declines. This strategy carries high-risk potential.
+      <br><br>
+      Cryptocurrency Investing: Invests in digital assets like Bitcoin and Ethereum. It’s a volatile, high-risk market requiring knowledge of the technology, regulatory shifts, and vigilance against scams.
+      <br><br>
+      Please Refresh The Page To Plaay Again ! 
+    </p>  <button
+    mat-raised-button
+    color="primary"
+    class="restart-button"
+    (click)="restartGame()"
+  >
+    Restart Game
+  </button>
+</div>
+
+</div>
+  
+  <!-- Proceed Screen -->
+  <div *ngIf="secondBackgroundVisible" class="proceed-screen">
+    <div class="top-left-info">
+      <p>Username: {{ username }}</p>
+      <p>Balance: ${{ balance }}</p>
+      <p>Date: {{ startingDate }}</p>
+    </div>
+    <p class="proceed-paragraph">
+      Welcome to the Wolf Of Wall Street! In this simulator, you’ll experience historical market scenarios where you’ll need to make critical decisions—BUY, SELL, or HOLD—based on unfolding events. Each scenario presents real-world market news and stock movements, and your job is to analyze the situation and make informed choices. Along the way, you’ll learn about various investment strategies, like Value Investing, Momentum Trading, and more. Ready to test your trading skills and make informed choices? Let’s get started!</p>
+
+    <button
+      mat-raised-button
+      color="accent"
+      class="proceed-button"
+      (click)="proceedWithGame()"
+    >
+      Proceed
+    </button>
+  </div>
+
+  <!-- News Screen -->
+  <div *ngIf="newsScreenVisible" class="news-screen">
+    <div class="top-left-info centered-left">
+      <p>Username: {{ username }}</p>
+      <p [ngClass]="{ 'flickerB': balanceFlickerB }">Balance: ${{ balance }}</p>
+      <p>Date: {{ newsDate }}</p>
+    </div>
+    <div class="news-content">
+      <h2 class="news-headline">{{ headline }}</h2>
+      <p class="news-paragraph">{{ content }}</p>
+    </div>
+
+
+    <mat-card class="cardWithShadow small-card top-right-chart">
+  <mat-card-content class="dark-card-content">
+    <div class="hstack align-items-center flex-column flex-lg-row m-b-20">
+      <mat-card-title class="dark-title">Stock Chart</mat-card-title>
+      <div class="m-l-auto">
+        <mat-form-field class="theme-select dark-theme-select" appearance="outline">
+          <mat-select (selectionChange)="updateChart($event.value)" placeholder="Select Stock">
+            <mat-option *ngFor="let stock of ['LEHLQ', 'TSLA','Pets.com','S&P 500','GME','BTC']" [value]="stock">
+              {{ stock }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <apx-chart 
+      [series]="stockChart.series"
+      [chart]="stockChart.chart"
+      [xaxis]="stockChart.xaxis"
+      [yaxis]="stockChart.yaxis"
+      [tooltip]="stockChart.tooltip"
+      [grid]="stockChart.grid"
+      [stroke]="stockChart.stroke"
+      [fill]="stockChart.fill">
+    </apx-chart>
+  </mat-card-content>
+</mat-card>
+
+    
+
+    <div class="actions">
+      <button
+        mat-raised-button
+        color="warn"
+        class="decision-button sell-button"
+        (click)="makeDecision('SELL')"
+      >
+        Sell
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        class="decision-button"
+        (click)="makeDecision('HOLD')"
+      >
+        Hold
+      </button>
+      <button
+        mat-raised-button
+        color="accent"
+        class="decision-button buy-button"
+        (click)="makeDecision('BUY')"
+      >
+        Buy
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+

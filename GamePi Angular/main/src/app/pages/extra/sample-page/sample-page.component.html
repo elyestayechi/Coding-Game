@@ -1,0 +1,39 @@
+<div>
+  <h1>Game Page</h1>
+
+  <!-- Start the game -->
+  <button mat-raised-button color="primary" (click)="startGame()">Start Game</button>
+
+  <!-- Game State -->
+  <div *ngIf="gameState">
+    <h3>Game State</h3>
+    <p>Username: {{ gameState.username }}</p>
+    <p>Balance: {{ gameState.balance }}</p>
+    <p>Starting Date: {{ gameState.startingDate }}</p>
+  </div>
+
+  <!-- Proceed with game -->
+  <button mat-raised-button color="accent" (click)="proceedWithGame()">Proceed</button>
+
+  <!-- Current News -->
+  <div *ngIf="currentNews">
+    <h3>Current News</h3>
+    <p>Date: {{ currentNews.newsDate }}</p>
+    <p>Headline: {{ currentNews.headline }}</p>
+    <p>Content: {{ currentNews.content }}</p>
+  </div>
+
+  <!-- Make a decision -->
+  <div *ngIf="currentNews && !currentNews.message?.includes('Game over')">
+    <h4>Make a Decision:</h4>
+    <button mat-raised-button color="primary" (click)="makeDecision('BUY')">BUY</button>
+    <button mat-raised-button color="warn" (click)="makeDecision('SELL')">SELL</button>
+    <button mat-raised-button color="accent" (click)="makeDecision('HOLD')">HOLD</button>
+  </div>
+
+  <!-- Decision Message -->
+  <div *ngIf="decisionMessage">
+    <h4>Message:</h4>
+    <p>{{ decisionMessage }}</p>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "@angular/animations": "^19.0.5",
+    "@angular/core": "^19.0.5",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0",
+    "chart.js": "^4.4.7",
+    "echarts": "^5.5.1",
+    "ngx-echarts": "^17.2.0",
+    "ngx-toastr": "^19.0.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41"
+  }
+}
